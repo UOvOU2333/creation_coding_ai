@@ -6,7 +6,7 @@ import streamlit as st
 
 def navbar(pageName):
 
-    with st.expander("页面导航栏"):
+    with st.expander("页面导航栏", expanded=True):
         col_nav1, col_nav2 = st.columns(2)
         with col_nav1:
             if st.button("首页", key=f"btn_home_{pageName}", use_container_width=True, type="primary"):
