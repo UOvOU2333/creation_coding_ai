@@ -28,7 +28,7 @@ AI/LLM
 
 The AI assistant is designed to follow a strict tool contract: it may only use available tool functions and cannot invent unsupported operations.
 
-> Development note: this project was developed with the assistance of AI tools, including GitHub Copilot and an LLM-based coding assistant, to help structure the implementation and documentation.
+> Development note: this project was developed with the assistance of AI tools, including GitHub Copilot and Deepseek, to help structure the implementation and documentation.
 
 ## Setup Instructions
 1. Prerequisites
@@ -175,4 +175,8 @@ Each task supports:
 - Add task dependency tracking and completion constraints
 
 ## Time Spent
-Approximately 3-4 hours
+Approximately 4 hours
+
+## Environment Variables
+
+This project uses a `.env` file to manage LLM-based agent service (e.g., API keys).
