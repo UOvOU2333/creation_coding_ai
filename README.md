@@ -24,7 +24,7 @@ AI/LLM
 - Agent execution trace display for debugging and transparency
 
 ## Overview
-`creation_coding_ai` is an intelligent task management workspace that combines a Streamlit UI with an LLM-powered agent. Users can manage tasks and task metadata through the UI, while also using natural language prompts to create, query, and update tasks.
+This project is an intelligent task management workspace that combines a Streamlit UI with an LLM-powered agent. Users can manage tasks and task metadata through the UI, while also using natural language prompts to create, query, and update tasks.
 
 The AI assistant is designed to follow a strict tool contract: it may only use available tool functions and cannot invent unsupported operations.
 
@@ -46,10 +46,10 @@ The AI assistant is designed to follow a strict tool contract: it may only use a
    python data/db_init.py
    ```
 
-4. Create a `.env` file in the project root with:
+4. Fill the `.env` file in the project root with:
    ```env
-   OPENAI_API_KEY=your_api_key_here
-   OPENAI_API_BASE=https://api.openai.com/v1
+   OPENAI_API_KEY=
+   OPENAI_API_BASE=
    ```
    - `OPENAI_API_BASE` is optional if the default provider endpoint is used.
 
