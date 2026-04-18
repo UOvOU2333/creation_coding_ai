@@ -2,7 +2,7 @@ from langchain_core.tools import tool
 from pydantic import BaseModel, Field
 from services import task_service
 
-from chains.agent import trace
+from chains.loger import trace
 
 
 class DeleteTaskInput(BaseModel):

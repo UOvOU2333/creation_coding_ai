@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field
 from typing import Optional
 from services import state_service
 
-from chains.agent import trace
+from chains.loger import trace
 
 
 class UpdateStateInput(BaseModel):

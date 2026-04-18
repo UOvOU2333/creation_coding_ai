@@ -154,7 +154,7 @@ def todayTasks():
         type_color = t["type_color"] if t["type_color"] else "#999999"
         state_color = t["state_color"] if t["state_color"] else "#999999"
 
-        col1, col2, col3 = st.columns([1, 1, 0.5])
+        col1, col2 = st.columns([1, 1])
 
         with col1:
             st.markdown(f"""
@@ -188,7 +188,6 @@ def todayTasks():
                 stars_html += "<span style='color:#DDDDDD;font-size:20px;'>★</span>"
             st.markdown(f"<div style='margin-bottom:6px;'>{stars_html}</div>", unsafe_allow_html=True)
         
-        with col3:
             if st.button("修改", key=f"edit_{t['id']}", use_container_width=True):
                 st.session_state["edit_task_id"] = t["id"]
                 st.switch_page("pages/managingPage.py")

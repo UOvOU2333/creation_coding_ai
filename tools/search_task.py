@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field
 from typing import Optional, List
 from services import task_service, type_service, state_service
 
-from chains.agent import trace
+from chains.loger import trace
 
 
 class SearchTaskInput(BaseModel):
