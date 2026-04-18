@@ -21,11 +21,13 @@ with col_subT:
     st.title("Task Scheduler",text_alignment="right")
 
 with col_mainT:
-    st.title("看板")
+    st.title("智能管理")
+    
 
-col_today, col_blank, col_overview = st.columns([15,1,20])
+col_agent, col_blank, col_overview = st.columns([15,1,20])
 
-with col_today:
-    todayTasks()
+with col_agent:
+    st.header("智能体")
 with col_overview:
     overview()
+    todayTasks()

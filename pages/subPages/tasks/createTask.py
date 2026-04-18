@@ -17,9 +17,9 @@ def createTask():
         task_name = st.text_input("任务名称")
         type_name = st.selectbox("任务类型", list(type_dict.keys()))
         state_name = st.selectbox("初始状态", list(state_dict.keys()))
-        start = st.date_input("开始日期", value=date.today())
 
     with col2:
+        start = st.date_input("开始日期", value=date.today())
         end = st.date_input("结束日期（可选）", value=None)
         priority = st.slider("优先级", 0, 10, 5)
 

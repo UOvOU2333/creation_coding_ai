@@ -66,8 +66,8 @@ def showAllTasks():
     # ===== 展示任务 =====
     st.divider()
     for t in tasks:
-        type_color = t["type_color"] if t.get("type_color") else "#999999"
-        state_color = t["state_color"] if t.get("state_color") else "#999999"
+        type_color = t["type_color"] if t["type_color"] else "#999999"
+        state_color = t["state_color"] if t["state_color"] else "#999999"
 
         col1, col2, col3, col_blank, col4 = st.columns([6, 6, 4, 3, 3])
 
@@ -137,8 +137,8 @@ def todayTasks():
     # 筛选出今天在 scheduled_start ~ scheduled_end 范围内的任务
     active_tasks = []
     for t in tasks:
-        start = t.get("scheduled_start")
-        end = t.get("scheduled_end")
+        start = t["scheduled_start"]
+        end = t["scheduled_end"]
         if start and start > today:
             continue
         if end and end < today:
@@ -151,8 +151,8 @@ def todayTasks():
 
     st.divider()
     for t in active_tasks:
-        type_color = t.get("type_color", "#999999")
-        state_color = t.get("state_color", "#999999")
+        type_color = t["type_color"] if t["type_color"] else "#999999"
+        state_color = t["state_color"] if t["state_color"] else "#999999"
 
         col1, col2 = st.columns([1, 1])
 
@@ -166,9 +166,27 @@ def todayTasks():
             """, unsafe_allow_html=True)
 
         with col2:
-            # 可展示优先级或其他信息
-            priority = t.get("priority", 0)
-            st.caption(f"优先级: {priority} / 10")
+            # 优先级：5星制（支持半星）
+            raw_priority = t["priority"] if t["priority"] is not None else 0
+            raw_priority = max(0, min(int(raw_priority), 10))
+            full_stars = raw_priority // 2
+            has_half = (raw_priority % 2) == 1
+            empty_stars = 5 - full_stars - (1 if has_half else 0)
+            stars_html = ""
+            for _ in range(full_stars):
+                stars_html += "<span style='color:#FFD700;font-size:20px;'>★</span>"
+            if has_half:
+                stars_html += """
+                <span style='
+                    font-size:20px;
+                    background: linear-gradient(90deg, #FFD700 50%, #DDDDDD 50%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                '>★</span>
+                """
+            for _ in range(empty_stars):
+                stars_html += "<span style='color:#DDDDDD;font-size:20px;'>★</span>"
+            st.markdown(f"<div style='margin-bottom:6px;'>{stars_html}</div>", unsafe_allow_html=True)
 
         st.divider()
 
@@ -187,13 +205,13 @@ def overview():
             # 获取所有未归档任务
             all_tasks = taskDB.get_tasks(include_archived=False)
             # 筛选 scheduled_start 等于当天
-            day_tasks = [t for t in all_tasks if t.get("scheduled_start") == day.isoformat()]
+            day_tasks = [t for t in all_tasks if t["scheduled_start"] == day.isoformat()]
 
             if not day_tasks:
                 st.write("无任务")
             else:
                 for t in day_tasks:
-                    type_color = t.get("type_color", "#999999")
+                    type_color = t["type_color"] if t["type_color"] else "#999999"
                     bars_html = f'''
                     <div style="display: flex; align-items: center; gap: 6px;">
                         <div style="width: 8px; height: 20px; background-color: {type_color}; border-radius: 4px;"></div>
