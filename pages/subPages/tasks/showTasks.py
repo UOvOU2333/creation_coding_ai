@@ -209,7 +209,7 @@ def overview():
             # 获取所有未归档任务
             all_tasks = taskDB.get_tasks(include_archived=False)
             # 筛选 scheduled_start 等于当天
-            day_tasks = [t for t in all_tasks if t["scheduled_start"] == day.isoformat()]
+            day_tasks = [t for t in all_tasks if (t["scheduled_start"] == day.isoformat() or ((t["scheduled_start"] <= day.isoformat() and t["scheduled_end"] >= day.isoformat()) if t["scheduled_end"] else False))]
 
             if not day_tasks:
                 st.write("无任务")
