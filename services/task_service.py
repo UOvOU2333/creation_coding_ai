@@ -170,3 +170,10 @@ def get_tasks(type_id=None, state_id=None, name_keyword=None,
     rows = cur.fetchall()
     conn.close()
     return rows
+
+def delete_task(task_id: int):
+    conn = get_conn()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM tasks WHERE id = ?", (task_id,))
+    conn.commit()
+    conn.close()

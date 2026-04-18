@@ -53,11 +53,17 @@ sql = """
 
 cur.executescript(sql)
 
-# 预设一个空状态（灰色）
-cur.execute("""
+states = [
+    ("未开始", "#808080"),
+    ("进行中", "#3B82F6"),  # 蓝色
+    ("已完成", "#10B981"),  # 绿色
+    ("已终止", "#EF4444"),  # 红色
+    ("暂停", "#F59E0B")     # 橙色
+]
+cur.executemany("""
     INSERT OR IGNORE INTO task_state (state_name, state_color)
     VALUES (?, ?)
-""", ("未设置", "#808080"))
+""", states)
 
 # 预设一个空类型（灰色）
 cur.execute("""

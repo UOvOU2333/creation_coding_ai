@@ -108,3 +108,8 @@ def updateTask():
                 priority=priority
             )
             st.success("任务修改成功！")
+
+        if st.button("删除任务", key="deleteTask", use_container_width=True):
+            taskDB.delete_task(task_id)
+            st.success("任务删除成功！")
+            st.rerun()

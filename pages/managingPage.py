@@ -17,8 +17,8 @@ with st.sidebar:
     st.title("任务管理")
     menu = sac.menu(
         items=[
-            sac.MenuItem('创建任务', icon='plus-circle'),
             sac.MenuItem('修改任务', icon='recycle'),
+            sac.MenuItem('创建任务', icon='plus-circle'),
             sac.MenuItem('全部任务', icon='database'),
             sac.MenuItem('类型管理', icon='tag'),
             sac.MenuItem('状态管理', icon='toggle-on'),
